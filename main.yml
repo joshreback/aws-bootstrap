@@ -88,19 +88,19 @@ Resources:
         - Key: Name
           Value: !Ref AWS::StackName
 
-  # Instance2:
-  #   Type: AWS::EC2::Instance
-  #   CreationPolicy:
-  #     ResourceSignal:
-  #       Timeout: PT5M
-  #       Count: 1
-  #   Properties:
-  #     LaunchTemplate:
-  #       LaunchTemplateId: !Ref InstanceLaunchTemplate
-  #       Version: !GetAtt  InstanceLaunchTemplate.LatestVersionNumber
-  #     Tags:
-  #       - Key: Name
-  #         Value: !Ref AWS::StackName
+  Instance2:
+    Type: AWS::EC2::Instance
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT5M
+        Count: 1
+    Properties:
+      LaunchTemplate:
+        LaunchTemplateId: !Ref InstanceLaunchTemplate
+        Version: !GetAtt  InstanceLaunchTemplate.LatestVersionNumber
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
 
   DeploymentRole:
     Type: AWS::IAM::Role
@@ -304,8 +304,8 @@ Outputs:
       Value: !Sub "http://${Instance.PublicDnsName}:8080"
       Export:
         Name: InstanceEndpoint1
-    # InstanceEndpoint2:
-    #   Description: The DNS name for the created instance
-    #   Value: !Sub "http://${Instance2.PublicDnsName}:8080"
-    #   Export:
-    #     Name: InstanceEndpoint2
+    InstanceEndpoint2:
+      Description: The DNS name for the created instance
+      Value: !Sub "http://${Instance2.PublicDnsName}:8080"
+      Export:
+        Name: InstanceEndpoint2
