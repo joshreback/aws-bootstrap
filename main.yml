@@ -124,10 +124,6 @@ Resources:
 
             # Create log directory
             mkdir -p /home/ec2-user/app/logs
-
-            cd app
-            npm install
-            npm start
           EOF
 
           chown ec2-user:ec2-user /tmp/install_script.sh && chmod a+x /tmp/install_script.sh
@@ -246,7 +242,6 @@ Resources:
                 ApplicationName: !Ref DeploymentApplication
                 DeploymentGroupName: !Ref StagingDeploymentGroup
               RunOrder: 1
-
   PipelineWebhook:
     Type: AWS::CodePipeline::Webhook
     Properties:
